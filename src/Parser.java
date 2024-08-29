@@ -1,17 +1,26 @@
 public class Parser {
 
-    public char[] getParsedEquation (String givenEquation){
+    public double[] getParsedNums (String givenSubstring){
 
-        char equationList[] = new char[3];
+        double[] parsedNums = new double[2];
 
-        for(int i = 0; i < givenEquation.length(); i++){
+        int symbolIndex = 0;
 
-            //if (givenEquation.charAt(i) == '*')
-                //equationList[0] = givenEquation.charAt(i-1)
+
+        for (int i = 0; i < givenSubstring.length(); i++){
+
+            if ( givenSubstring.charAt(i) == '*' || givenSubstring.charAt(i) == '/' || givenSubstring.charAt(i) == '+' || givenSubstring.charAt(i) == '-')
+                symbolIndex = i;
 
         }
 
-        return equationList;
+
+        parsedNums[0] = Double.parseDouble(String.valueOf(givenSubstring.substring(0,symbolIndex)));
+        parsedNums[1] = Double.parseDouble(String.valueOf(givenSubstring.substring(symbolIndex+1,givenSubstring.length())));
+
+        System.out.println(parsedNums[0] + " " + parsedNums[1]);
+
+        return parsedNums;
     }
 
 }
