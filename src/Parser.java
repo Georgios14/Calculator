@@ -8,11 +8,11 @@ public class Parser {
         //Finds the index of the first sign found
         int index = equation.indexOf('+');
 
-        if(equation.indexOf('-') < index || index!=-1)
+        if(equation.indexOf('-') < index || index==-1)
             index = equation.indexOf('-');
-        if(equation.indexOf('*') < index || index!=-1)
+        if(equation.indexOf('*') < index || index==-1)
             index = equation.indexOf('*');
-        if(equation.indexOf('/') < index || index!=-1)
+        if(equation.indexOf('/') < index || index==-1)
             index = equation.indexOf('/');
 
         if(index == -1){
@@ -26,12 +26,9 @@ public class Parser {
             //Saves the first sign in sign variable
             calc.setSign(parseSign(equation.charAt(index)));
             //saves the first number in left child number variable
-            String leftNumber = equation.substring(0, index);
-            calc.left.setNumber(Double.valueOf(leftNumber));
+            calc.left.setNumber(Double.parseDouble(equation.substring(0, index)));
 
-            String subEquation = equation.substring(index+1);
-
-            return parse(calc.right, subEquation);
+            return parse(calc.right, equation.substring(index+1));
         }
 
     }

@@ -2,6 +2,7 @@ package Calc;
 
 public class Calculator {
 
+    boolean calculated = false;
     double number;
     Signs.Sign sign;
     public Calculator left;
@@ -24,10 +25,18 @@ public class Calculator {
     }
 
     public double getRLnumber(Calculator calc){
-        if (calc.getSign() == null)
+        if (calc.calculated)
             return calc.getNumber();
         else
             return calc.left.getNumber();
+    }
+
+    public boolean isCalculated() {
+        return calculated;
+    }
+
+    public void setCalculated(boolean calculated) {
+        this.calculated = calculated;
     }
 
 }
