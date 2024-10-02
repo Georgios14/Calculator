@@ -4,23 +4,30 @@ public class Calculator {
 
     double number;
     Signs.Sign sign;
-    Calculator left;
-    Calculator right;
+    public Calculator left;
+    public Calculator right;
 
-    public double addition(double num1,double num2){
-        return num1+num2;
+    public void setNumber(Double number) {
+        this.number = number;
     }
 
-    public double subtraction(double num1, double num2){
-        return num1-num2;
+    public double getNumber(){
+        return this.number;
     }
 
-    public double multiplication(double num1,double num2){
-        return num1*num2;
+    public void setSign(Signs.Sign sign) {
+        this.sign = sign;
     }
 
-    public double division(double num1,double num2){
-        return num1/num2;
+    public Signs.Sign getSign(){
+        return this.sign;
+    }
+
+    public double getRLnumber(Calculator calc){
+        if (calc.getSign() == null)
+            return calc.getNumber();
+        else
+            return calc.left.getNumber();
     }
 
 }
