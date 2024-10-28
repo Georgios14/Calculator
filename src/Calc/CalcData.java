@@ -1,12 +1,12 @@
 package Calc;
 
-public class Calculator {
+public class CalcData {
 
     boolean calculated = false;
     double number;
     Signs.Sign sign;
-    public Calculator left;
-    public Calculator right;
+    public CalcData left;
+    public CalcData right;
 
     public void setNumber(Double number) {
         this.number = number;
@@ -24,7 +24,8 @@ public class Calculator {
         return this.sign;
     }
 
-    public double getRLnumber(Calculator calc){
+    @SuppressWarnings("SpellCheckingInspection")
+    public double getRLnumber(CalcData calc){
         if (calc.calculated || (calc.left.getNumber() == 0 && calc.left.getSign() == null))
             return calc.getNumber();
         else

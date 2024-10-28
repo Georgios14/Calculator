@@ -1,12 +1,12 @@
-import Calc.Calculator;
+import Calc.CalcData;
 import Calc.Signs;
 
 public class Parser {
 
-    public static void parse(Calculator calc, String equation){
+    public static void parse(CalcData calc, String equation){
 
-        calc.left = new Calculator();
-        calc.right = new Calculator();
+        calc.left = new CalcData();
+        calc.right = new CalcData();
 
         //Finds the index of the first sign
         int index = indexLocator(equation);

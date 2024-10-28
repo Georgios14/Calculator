@@ -1,5 +1,5 @@
 import Calc.Calculation;
-import Calc.Calculator;
+import Calc.CalcData;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,7 +7,7 @@ public class Main {
         double solution;
 
         //Initialising classes
-        Calculator calc = new Calculator();
+        CalcData calc = new CalcData();
         Calculation calculate = new Calculation();
         Reader reader = new Reader();
 

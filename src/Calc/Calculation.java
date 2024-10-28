@@ -2,7 +2,7 @@ package Calc;
 
 public class Calculation {
 
-    public double calculateMultiplicationDivision(Calculator calc, double previousSolution, boolean previousCalculated){
+    public double calculateMultiplicationDivision(CalcData calc, double previousSolution, boolean previousCalculated){
 
         Signs.Sign sign = calc.getSign();
         Signs.Sign rightSign = calc.right.getSign();
@@ -36,7 +36,7 @@ public class Calculation {
 
     }
 
-    public double calculateAdditionSubtraction(Calculator calc,double previousSolution,boolean previousCalculated){
+    public double calculateAdditionSubtraction(CalcData calc, double previousSolution, boolean previousCalculated){
 
         Signs.Sign sign = calc.getSign();
         Signs.Sign rightSign = calc.right.getSign();
