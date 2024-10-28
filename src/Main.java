@@ -12,7 +12,7 @@ public class Main {
         Reader reader = new Reader();
 
         //Start of method calls
-        calc = Parser.parse(calc,reader.readEquation());
+        Parser.parse(calc, reader.readEquation());
         calculate.calculateMultiplicationDivision(calc, calc.getNumber(), calc.isCalculated());
         solution = calculate.calculateAdditionSubtraction(calc,calc.getNumber(),calc.isCalculated());
 

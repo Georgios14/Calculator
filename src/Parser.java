@@ -3,23 +3,18 @@ import Calc.Signs;
 
 public class Parser {
 
-    public static Calculator parse(Calculator calc, String equation){
+    public static void parse(Calculator calc, String equation){
 
-        //Finds the index of the first sign found
-        int index = equation.indexOf('+');
+        calc.left = new Calculator();
+        calc.right = new Calculator();
 
-        if(equation.indexOf('-') < index || index==-1)
-            index = equation.indexOf('-');
-        if(equation.indexOf('*') < index || index==-1)
-            index = equation.indexOf('*');
-        if(equation.indexOf('/') < index || index==-1)
-            index = equation.indexOf('/');
+        //Finds the index of the first sign
+        int index = indexLocator(equation);
 
         if(index == -1){
             //Saves last number in number variable
             calc.setNumber(Double.valueOf(equation));
 
-            return calc;
         }
         else {
 
@@ -28,7 +23,10 @@ public class Parser {
             //saves the first number in left child number variable
             calc.left.setNumber(Double.parseDouble(equation.substring(0, index)));
 
-            return parse(calc.right, equation.substring(index+1));
+            String substring = equation.substring(index+1);
+
+            parse(calc.right, substring);
+
         }
 
     }
@@ -52,6 +50,19 @@ public class Parser {
 
 
         return sign;
+
+    }
+
+    public static int indexLocator(String equation){
+
+        for(int i=0;i<equation.length();i++){
+
+            if(equation.charAt(i)=='+' || equation.charAt(i)=='-' || equation.charAt(i)=='*' || equation.charAt(i)=='/')
+                return i;
+
+        }
+
+        return -1;
 
     }
 

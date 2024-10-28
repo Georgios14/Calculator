@@ -25,7 +25,7 @@ public class Calculator {
     }
 
     public double getRLnumber(Calculator calc){
-        if (calc.calculated)
+        if (calc.calculated || (calc.left.getNumber() == 0 && calc.left.getSign() == null))
             return calc.getNumber();
         else
             return calc.left.getNumber();

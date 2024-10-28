@@ -3,24 +3,19 @@ package Calc;
 public class Calculation {
 
     public double calculateMultiplicationDivision(Calculator calc, double previousSolution, boolean previousCalculated){
-        double solution = 0;
 
-        if (calc.getSign() == Signs.Sign.multiplication && !calc.isCalculated()){
+        Signs.Sign sign = calc.getSign();
+        Signs.Sign rightSign = calc.right.getSign();
+
+        if (sign == Signs.Sign.multiplication && !calc.isCalculated()){
             if(previousCalculated)
                 calc.setNumber(multiplication(previousSolution, calc.getRLnumber(calc.right)));
             else
                 calc.setNumber(multiplication(calc.left.getNumber(), calc.getRLnumber(calc.right)));
             calc.setCalculated(true);
 
-            if(calc.right.isCalculated() && previousCalculated)
-                calc.right.setNumber(calc.getNumber());
-
-            solution = calc.getNumber();
-
-            if (calc.right.getSign() != null)
-                calculateMultiplicationDivision(calc.right,calc.getNumber(),calc.isCalculated());
         }
-        else if (calc.getSign() == Signs.Sign.division && !calc.isCalculated()){
+        else if (sign == Signs.Sign.division && !calc.isCalculated()){
             if(previousCalculated)
                 calc.setNumber(division(previousSolution, calc.getRLnumber(calc.right)));
             else
@@ -30,13 +25,11 @@ public class Calculation {
             if(calc.right.isCalculated() && previousCalculated)
                 calc.right.setNumber(calc.getNumber());
 
-            solution = calc.getNumber();
-
-            if (calc.right.getSign() != null)
-                calculateMultiplicationDivision(calc.right,calc.getNumber(),calc.isCalculated());
         }
 
-        if (calc.right.getSign() == null)
+        double solution = calc.getNumber();
+
+        if (rightSign == null)
             return solution;
         else
             return calculateMultiplicationDivision(calc.right,calc.getNumber(),calc.isCalculated());
@@ -44,9 +37,11 @@ public class Calculation {
     }
 
     public double calculateAdditionSubtraction(Calculator calc,double previousSolution,boolean previousCalculated){
-        double solution = 0;
 
-        if (calc.getSign() == Signs.Sign.addition && !calc.isCalculated()){
+        Signs.Sign sign = calc.getSign();
+        Signs.Sign rightSign = calc.right.getSign();
+
+        if (sign == Signs.Sign.addition && !calc.isCalculated()){
             if(previousCalculated)
                 calc.setNumber(addition(previousSolution, calc.getRLnumber(calc.right)));
             else
@@ -56,12 +51,8 @@ public class Calculation {
             if(calc.right.isCalculated() && previousCalculated)
                 calc.right.setNumber(calc.getNumber());
 
-            solution = calc.getNumber();
-
-            if (calc.right.getSign() != null)
-                calculateAdditionSubtraction(calc.right,calc.getNumber(),calc.isCalculated());
         }
-        else if (calc.getSign() == Signs.Sign.division && !calc.isCalculated()){
+        else if (sign == Signs.Sign.subtraction && !calc.isCalculated()){
             if(previousCalculated)
                 calc.setNumber(subtraction(previousSolution, calc.getRLnumber(calc.right)));
             else
@@ -71,16 +62,15 @@ public class Calculation {
             if(calc.right.isCalculated() && previousCalculated)
                 calc.right.setNumber(calc.getNumber());
 
-            solution = calc.getNumber();
-
-            if (calc.right.getSign() != null)
-                calculateAdditionSubtraction(calc.right,calc.getNumber(),calc.isCalculated());
         }
 
-        if (calc.right.getSign() == null)
+        double solution = calc.getNumber();
+
+        if (rightSign == null)
             return solution;
         else
             return calculateAdditionSubtraction(calc.right,calc.getNumber(),calc.isCalculated());
+
     }
 
     public static double addition(double num1,double num2){
